@@ -27,17 +27,14 @@
   const frameB = document.getElementById("frameB");
   let current = 0;
 
-  const DISPLAY_TIME_MS = 30_000; // Show time per page
+  const DISPLAY_TIME_MS = 30_000; 
   const FADE_DURATION_MS = 1000;
 
-  /**
-   * Switches the 'active' class from current to next frame.
-   */
+  //Switches the 'active' class from current to next frame.
   function showNextPage() {
     const currentFrame = current % 2 === 0 ? frameA : frameB;
     const nextFrame = current % 2 === 0 ? frameB : frameA;
-
-    // Fade transition: Fade out current, fade in next
+  
     currentFrame.classList.remove("active");
     nextFrame.classList.add("active");
 
@@ -53,7 +50,7 @@
     const frameToLoad = current % 2 === 0 ? frameB : frameA;
     // const loadingOverlay = document.getElementById("loadingOverlay");
 
-    // //loading overlay screen
+    //loading overlay screen
     // loadingOverlay.classList.add("active");
 
     // Set the src to start preloading
@@ -71,3 +68,10 @@
     preloadNextPage();
   };
 })();
+
+const REFRESH_INTERVAL_MS = 6 * 60 * 60 * 1000;
+
+setTimeout(() => {
+  console.log ("Refreshing page");
+  window.location.reload(true);
+}, REFRESH_INTERVAL_MS);
