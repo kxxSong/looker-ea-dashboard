@@ -1,40 +1,20 @@
-(function () {
-  const pages = [
-    "p_1endzgexsd",
-    "p_texbdxfmvd",
-    "p_2x0f5io5td",
-    "p_5yebpg6jxd",
-    "p_4275ef5mud",
-    "p_4pkb4m6uud",
-    "p_nsu0tp6uud",
-    "p_kvsqfk6jxd",
-    "p_4959fo6jxd",
-    "p_xbwp0q6jxd",
-    "p_v3zcwt6jxd",
-    "p_bzttsw6jxd",
-    "p_irgop06jxd",
-    "p_4sxnq26jxd",
-    "p_ag6hv3beud",
-    "p_zc1wl8m4td",
-    "p_ad61hko5td",
-    "p_i2sztlo5td",
-    "p_2oy574beud",
-    "p_brjf4g0jud",
-  ];
+(async function () {
   const base =
     "https://lookerstudio.google.com/embed/reporting/6adb4333-3157-427e-aa10-34fee0262736/page/";
+
+  const res = await fetch("pages.json");
+  const pages = await res.json();
+
   const frameA = document.getElementById("frameA");
   const frameB = document.getElementById("frameB");
   let current = 0;
-
-  const DISPLAY_TIME_MS = 30_000; 
-  const FADE_DURATION_MS = 1000;
+  const DISPLAY_TIME_MS = 30_000;
 
   //Switches the 'active' class from current to next frame.
   function showNextPage() {
     const currentFrame = current % 2 === 0 ? frameA : frameB;
     const nextFrame = current % 2 === 0 ? frameB : frameA;
-  
+
     currentFrame.classList.remove("active");
     nextFrame.classList.add("active");
 
@@ -68,6 +48,7 @@
     preloadNextPage();
   };
 })();
+
 
 const REFRESH_INTERVAL_MS = 6 * 60 * 60 * 1000;
 
